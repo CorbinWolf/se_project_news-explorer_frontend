@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0 40px;
+  padding: 80px 40px;
   box-sizing: border-box;
 }
 
@@ -12,13 +12,12 @@
   gap: 56px;
   width: 100%;
   max-width: 1232px;
-  padding: 80px 0;
 }
 
 .about__portrait {
   height: 464px;
   width: 464px;
-  border-radius: 360px;
+  border-radius: 50%;
 }
 
 .about__desc {
@@ -44,9 +43,12 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .about {
+    padding: 40px;
+  }
+
   .about__content {
     gap: 32px;
-    padding: 40px 0;
   }
 
   .about__portrait {
@@ -66,14 +68,13 @@
 
 @media screen and (max-width: 700px) {
   .about {
-    padding: 0 16px;
+    padding: 32px 16px;
   }
 
   .about__content {
     flex-direction: column;
     gap: 24px;
     width: 288px;
-    padding: 32px 0;
   }
 
   .about__portrait {
