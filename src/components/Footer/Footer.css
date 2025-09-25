@@ -1,8 +1,18 @@
 .footer {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.footer__content {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
+  width: 100%;
+  max-width: 1232px;
   padding: 28px 0;
 }
 
@@ -46,9 +56,11 @@
 
 @media screen and (max-width: 700px) {
   .footer {
+    padding: 0 16px;
+  }
+
+  .footer__content {
     flex-direction: column;
-    justify-content: unset;
-    align-items: center;
     padding: 22px 0;
   }
 
