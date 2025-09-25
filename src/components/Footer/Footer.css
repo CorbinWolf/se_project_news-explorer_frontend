@@ -74,7 +74,8 @@
     align-content: space-between;
     gap: unset;
     height: 96px;
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
   }
 
   .footer__btn {
