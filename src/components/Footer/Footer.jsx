@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer__desc">
           &copy; 2024 Supersite, Powered by News API
         </div>
-        <div className="footer__nav">
+        <nav className="footer__nav">
           <p className="footer__btn">
             <Link to="/" className="footer__link">
               Home
@@ -28,7 +28,7 @@ function Footer() {
               TripleTen
             </Link>
           </p>
-          <div className="footer__group">
+          <nav className="footer__group">
             <Link
               to="https://github.com/CorbinWolf/se_project_news-explorer_frontend"
               target="_blank"
@@ -43,8 +43,8 @@ function Footer() {
             >
               <img src={linkedin} alt="LinkedIn" className="footer__icon" />
             </Link>
-          </div>
-        </div>
+          </nav>
+        </nav>
       </div>
     </footer>
   );
