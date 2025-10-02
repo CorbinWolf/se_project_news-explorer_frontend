@@ -13,7 +13,11 @@ function Navigation() {
   };
 
   return (
-    <>
+    <div
+      className={`${
+        isOpen ? "navigation__background" : "navigation__background_unset"
+      }`}
+    >
       <div className={`navigation${isOpen ? " navigation_dropdown-open" : ""}`}>
         <div className="navigation__content">
           <h1 className="navigation__title">NewsExplorer</h1>
@@ -58,7 +62,7 @@ function Navigation() {
           </nav>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

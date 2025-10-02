@@ -115,6 +115,18 @@
     background-color: #1a1b22;
   }
 
+  .navigation__background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0000004d;
+  }
+
   .navigation__content {
     max-width: 288px;
   }
@@ -146,7 +158,7 @@
   }
 
   .navigation__menu-btn {
-    display: block;
+    display: unset;
   }
 
   .navigation__hidden {
