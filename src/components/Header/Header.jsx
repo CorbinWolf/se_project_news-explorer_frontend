@@ -1,4 +1,5 @@
 import Navigation from "../Navigation/Navigation";
+import SearchForm from "../SearchForm/SearchForm";
 
 import "./Header.css";
 
@@ -13,19 +14,7 @@ function Header() {
             Find the latest news on any topic and save them in your personal
             account.
           </p>
-          <div className="header__input-container">
-            <label htmlFor="search" className="">
-              <input
-                id="search"
-                type=""
-                className="header__search-input"
-                placeholder="Enter topic"
-              />
-            </label>
-            <button className="header__search-btn" type="button">
-              Search
-            </button>
-          </div>
+          <SearchForm />
         </div>
       </div>
     </div>
