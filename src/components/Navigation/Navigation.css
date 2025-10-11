@@ -3,9 +3,9 @@
   justify-content: center;
   width: 100%;
   padding: 0 40px;
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #999;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: #00000066;
 }
 
 .navigation_mobile {
