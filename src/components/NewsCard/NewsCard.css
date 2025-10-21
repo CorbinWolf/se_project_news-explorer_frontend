@@ -63,7 +63,6 @@
 }
 
 .card__date {
-  margin: 0;
   color: #b6bcbf;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: 400;
@@ -102,13 +101,13 @@
 }
 
 .card__publisher {
-  margin: 0;
   color: #b6bcbf;
   font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   text-transform: uppercase;
+  font-style: normal;
 }
 
 @media screen and (max-width: 1000px) {
