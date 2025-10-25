@@ -26,7 +26,7 @@
   display: none;
   justify-content: unset;
   max-width: 288px;
-  background-color: #1a1b22;
+  background-color: transparent;
 }
 
 .navigation__title {

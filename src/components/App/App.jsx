@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
+import GeneralUIContext from "../../contexts/GeneralUIContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
@@ -11,9 +14,53 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import "./App.css";
 
 function App() {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const pageContentRef = useRef(null);
   const scrollbarRef = useRef(null);
   const scrollbarHeightRef = useRef(null);
+
+  const manageMobileNav = (isOpen) => {
+    setIsMobileNavOpen(isOpen);
+  };
+
+  const manageActiveModal = (modal) => {
+    setActiveModal(modal);
+  };
+
+  const handleLoginModalSubmit = ({ email, password }) => {
+    signin(email, password)
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        getUserData().then((UserData) => {
+          setCurrentUser(UserData);
+          manageActiveModal("");
+        });
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  };
+
+  const handleRegisterModalSubmit = () => {};
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        manageActiveModal("");
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     let isUpdating = false;
@@ -64,24 +111,42 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
-      <div className="page__content" ref={pageContentRef}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/saved-news" element={<SavedNews />} />
-        </Routes>
-        <Footer />
-        <div className="page__scrollbar" ref={scrollbarRef}>
-          <div
-            className="page__scrollbar-height"
-            ref={scrollbarHeightRef}
-          ></div>
+    <GeneralUIContext.Provider
+      value={{
+        isMobileNavOpen,
+        manageMobileNav,
+        activeModal,
+        manageActiveModal,
+      }}
+    >
+      <CurrentUserContext.Provider
+        value={{
+          currentUser,
+          isLoggedIn,
+          handleLoginModalSubmit,
+          handleRegisterModalSubmit,
+        }}
+      >
+        <div className="page">
+          <div className="page__content" ref={pageContentRef}>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/saved-news" element={<SavedNews />} />
+            </Routes>
+            <Footer />
+            <div className="page__scrollbar" ref={scrollbarRef}>
+              <div
+                className="page__scrollbar-height"
+                ref={scrollbarHeightRef}
+              ></div>
+            </div>
+          </div>
+          <LoginModal />
+          <RegisterModal />
         </div>
-      </div>
-      <LoginModal />
-      <RegisterModal />
-    </div>
+      </CurrentUserContext.Provider>
+    </GeneralUIContext.Provider>
   );
 }
 
