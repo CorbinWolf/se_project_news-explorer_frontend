@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
 import GeneralUIContext from "../../contexts/GeneralUIContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./RegisterModal.css";
 

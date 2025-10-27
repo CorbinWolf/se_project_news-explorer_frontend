@@ -16,6 +16,7 @@ import "./App.css";
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeModal, setActiveModal] = useState("");
+  const [newsCards, setNewsCards] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -125,6 +126,8 @@ function App() {
         setIsMobileNavOpen,
         activeModal,
         setActiveModal,
+        newsCards,
+        setNewsCards,
       }}
     >
       <CurrentUserContext.Provider

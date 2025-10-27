@@ -40,6 +40,7 @@
   font-size: 18px;
   line-height: 24px;
   background-color: #2f71e5;
+  transition: 0.15s ease-in-out;
 }
 
 .search-form__btn:hover {

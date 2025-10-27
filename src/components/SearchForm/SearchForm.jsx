@@ -1,20 +1,40 @@
+import { useContext } from "react";
+
+import { getNews, filterNewsData } from "../../utils/newsApi";
+import GeneralUIContext from "../../contexts/GeneralUIContext";
+
 import "./SearchForm.css";
 
 function SearchForm() {
+  const { setNewsCards } = useContext(GeneralUIContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getNews(e.target.search.value)
+      .then((newsData) => {
+        return filterNewsData(newsData.articles);
+      })
+      .then((filteredData) => {
+        setNewsCards(filteredData);
+      })
+      .catch(console.error);
+  };
+
   return (
-    <div className="search-form">
+    <form onSubmit={handleSubmit} className="search-form">
       <label htmlFor="search" className="search-form__input-label">
         <input
           id="search"
-          type=""
-          className="search-form__input"
+          name="search"
+          type="text"
           placeholder="Enter topic"
+          className="search-form__input"
         />
       </label>
-      <button className="search-form__btn" type="button">
+      <button type="submit" className="search-form__btn">
         Search
       </button>
-    </div>
+    </form>
   );
 }
 
