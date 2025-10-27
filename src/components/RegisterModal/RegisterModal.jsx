@@ -8,7 +8,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./RegisterModal.css";
 
 function RegisterModal() {
-  const { activeModal, manageActiveModal } = useContext(GeneralUIContext);
+  const { activeModal, setActiveModal } = useContext(GeneralUIContext);
   const { handleRegisterModalSubmit } = useContext(CurrentUserContext);
 
   const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ function RegisterModal() {
       title="Sign up"
       btnText="Sign up"
       isOpen={activeModal === "sign-up"}
-      onClose={() => manageActiveModal("")}
+      onClose={() => setActiveModal("")}
       onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__label">
@@ -77,7 +77,7 @@ function RegisterModal() {
       <button
         className="modal__switch-btn"
         type="button"
-        onClick={() => manageActiveModal("login")}
+        onClick={() => setActiveModal("login")}
       >
         or Sign in
       </button>

@@ -23,42 +23,50 @@ function App() {
   const scrollbarRef = useRef(null);
   const scrollbarHeightRef = useRef(null);
 
-  const manageMobileNav = (isOpen) => {
-    setIsMobileNavOpen(isOpen);
-  };
-
-  const manageActiveModal = (modal) => {
-    setActiveModal(modal);
-  };
+  const navigate = useNavigate();
 
   const handleLoginModalSubmit = ({ email, password }) => {
-    signin(email, password)
-      .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        getUserData().then((UserData) => {
-          setCurrentUser(UserData);
-          manageActiveModal("");
-        });
-        setIsLoggedIn(true);
-      })
-      .catch(console.error);
+    setActiveModal("");
+    setCurrentUser({ email, password });
+    setIsLoggedIn(true);
   };
 
-  const handleRegisterModalSubmit = () => {};
+  const handleRegisterModalSubmit = ({ email, password, username }) => {
+    setActiveModal("");
+    setCurrentUser({ email, password, username });
+    setIsLoggedIn(true);
+  };
+
+  const handleSignOutClick = () => {
+    setIsLoggedIn(false);
+    setCurrentUser("");
+    navigate("/");
+  };
 
   useEffect(() => {
     if (!activeModal) return;
 
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
-        manageActiveModal("");
+        setActiveModal("");
+      }
+    };
+
+    const handleClickClose = (e) => {
+      if (
+        e.target.classList.contains("modal_opened") &&
+        window.innerWidth > 700
+      ) {
+        setActiveModal("");
       }
     };
 
     document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("click", handleClickClose);
 
     return () => {
       document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("click", handleClickClose);
     };
   }, [activeModal]);
 
@@ -114,9 +122,9 @@ function App() {
     <GeneralUIContext.Provider
       value={{
         isMobileNavOpen,
-        manageMobileNav,
+        setIsMobileNavOpen,
         activeModal,
-        manageActiveModal,
+        setActiveModal,
       }}
     >
       <CurrentUserContext.Provider
@@ -125,6 +133,7 @@ function App() {
           isLoggedIn,
           handleLoginModalSubmit,
           handleRegisterModalSubmit,
+          handleSignOutClick,
         }}
       >
         <div className="page">

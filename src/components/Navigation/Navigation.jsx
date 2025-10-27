@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import signOut from "../../assets/sign-out.svg";
 import menuLight from "../../assets/menu-light.svg";
 import GeneralUIContext from "../../contexts/GeneralUIContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -8,12 +9,13 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
 
 function Navigation() {
-  const { isMobileNavOpen, manageMobileNav, activeModal, manageActiveModal } =
+  const { isMobileNavOpen, setIsMobileNavOpen, activeModal, setActiveModal } =
     useContext(GeneralUIContext);
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn, handleSignOutClick } =
+    useContext(CurrentUserContext);
 
   const toggleMobileMenu = () => {
-    isMobileNavOpen === false ? manageMobileNav(true) : manageMobileNav(false);
+    setIsMobileNavOpen(!isMobileNavOpen);
   };
 
   return (
@@ -45,14 +47,25 @@ function Navigation() {
                   Saved Pages
                 </Link>
               </p>
-            ) : (
-              <></>
-            )}
+            ) : null}
             <button
-              className="navigation__btn_sign-in"
-              onClick={() => manageActiveModal("login")}
+              onClick={() => {
+                isLoggedIn ? handleSignOutClick() : setActiveModal("login");
+              }}
+              className={`navigation__btn_sign-in${
+                isLoggedIn ? " navigation__btn_sign-out" : ""
+              }`}
             >
-              <p className="navigation__btn-text">Sign in</p>
+              <p className="navigation__btn-text">
+                {isLoggedIn ? currentUser.username || "Temp" : "Sign in"}
+              </p>
+              {isLoggedIn ? (
+                <img
+                  src={signOut}
+                  alt="Sign out"
+                  className="navigation__sign-out-icon"
+                />
+              ) : null}
             </button>
           </nav>
           <button
@@ -90,12 +103,23 @@ function Navigation() {
             </p>
             <button
               onClick={() => {
-                manageMobileNav(false);
-                manageActiveModal("login");
+                isLoggedIn ? handleSignOutClick() : setActiveModal("login");
+                setIsMobileNavOpen(false);
               }}
-              className="navigation__btn_sign-in"
+              className={`navigation__btn_sign-in${
+                isLoggedIn ? " navigation__btn_sign-out" : ""
+              }`}
             >
-              <p className="navigation__btn-text">Sign in</p>
+              <p className="navigation__btn-text">
+                {isLoggedIn ? currentUser.username || "Temp" : "Sign in"}
+              </p>
+              {isLoggedIn ? (
+                <img
+                  src={signOut}
+                  alt="Sign out"
+                  className="navigation__sign-out-icon"
+                />
+              ) : null}
             </button>
           </nav>
         </div>

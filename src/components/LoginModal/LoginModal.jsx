@@ -8,7 +8,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./LoginModal.css";
 
 function LoginModal() {
-  const { activeModal, manageActiveModal } = useContext(GeneralUIContext);
+  const { activeModal, setActiveModal } = useContext(GeneralUIContext);
   const { handleLoginModalSubmit } = useContext(CurrentUserContext);
 
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ function LoginModal() {
       title="Sign in"
       btnText="Sign in"
       isOpen={activeModal === "login"}
-      onClose={() => manageActiveModal("")}
+      onClose={() => setActiveModal("")}
       onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__label">
@@ -63,7 +63,7 @@ function LoginModal() {
       <button
         className="modal__switch-btn"
         type="button"
-        onClick={() => manageActiveModal("sign-up")}
+        onClick={() => setActiveModal("sign-up")}
       >
         or Sign up
       </button>
