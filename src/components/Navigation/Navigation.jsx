@@ -1,7 +1,9 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import signOut from "../../assets/sign-out.svg";
+import signOutDark from "../../assets/sign-out-dark.svg";
+import menuDark from "../../assets/menu-dark.svg";
 import menuLight from "../../assets/menu-light.svg";
 import GeneralUIContext from "../../contexts/GeneralUIContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -14,9 +16,25 @@ function Navigation() {
   const { currentUser, isLoggedIn, handleSignOutClick } =
     useContext(CurrentUserContext);
 
+  const location = useLocation();
+
   const toggleMobileMenu = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 700 && isMobileNavOpen) {
+        setIsMobileNavOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobileNavOpen, setIsMobileNavOpen]);
 
   return (
     <div
@@ -28,22 +46,58 @@ function Navigation() {
     >
       <div
         className={`navigation${
+          location.pathname === "/saved-news" ? " navigation_saved-news" : ""
+        }${
           activeModal !== ""
             ? ""
             : `${isMobileNavOpen ? " navigation_dropdown-open" : ""}`
         }`}
       >
         <div className="navigation__content">
-          <h1 className="navigation__title">NewsExplorer</h1>
+          <h1
+            className={`navigation__title${
+              location.pathname === "/saved-news"
+                ? isMobileNavOpen
+                  ? ""
+                  : " navigation__saved-news-text"
+                : ""
+            }`}
+          >
+            NewsExplorer
+          </h1>
           <nav className="navigation__nav">
-            <p className="navigation__btn navigation__btn_active">
-              <Link to="/" className="navigation__link">
+            <p
+              className={`navigation__btn${
+                location.pathname === "/" ? " navigation__btn_active" : ""
+              }`}
+            >
+              <Link
+                to="/"
+                className={`navigation__link${
+                  location.pathname === "/saved-news"
+                    ? " navigation__saved-news-text"
+                    : ""
+                }`}
+              >
                 Home
               </Link>
             </p>
             {isLoggedIn ? (
-              <p className="navigation__btn">
-                <Link to="/saved-news" className="navigation__link">
+              <p
+                className={`navigation__btn${
+                  location.pathname === "/saved-news"
+                    ? " navigation__btn_active-saved-news"
+                    : ""
+                }`}
+              >
+                <Link
+                  to="/saved-news"
+                  className={`navigation__link${
+                    location.pathname === "/saved-news"
+                      ? " navigation__saved-news-text"
+                      : ""
+                  }`}
+                >
                   Saved Pages
                 </Link>
               </p>
@@ -53,15 +107,25 @@ function Navigation() {
                 isLoggedIn ? handleSignOutClick() : setActiveModal("login");
               }}
               className={`navigation__btn_sign-in${
-                isLoggedIn ? " navigation__btn_sign-out" : ""
-              }`}
+                location.pathname === "/saved-news"
+                  ? " navigation__saved-news-text navigation__btn_sign-in-saved-news"
+                  : ""
+              }${isLoggedIn ? " navigation__btn_sign-out" : ""}`}
             >
-              <p className="navigation__btn-text">
-                {isLoggedIn ? currentUser.username || "Temp" : "Sign in"}
+              <p
+                className={`navigation__btn-text${
+                  location.pathname === "/saved-news"
+                    ? " navigation__saved-news-text"
+                    : ""
+                }`}
+              >
+                {isLoggedIn ? currentUser.username : "Sign in"}
               </p>
               {isLoggedIn ? (
                 <img
-                  src={signOut}
+                  src={
+                    location.pathname === "/saved-news" ? signOutDark : signOut
+                  }
                   alt="Sign out"
                   className="navigation__sign-out-icon"
                 />
@@ -76,7 +140,13 @@ function Navigation() {
             }`}
           >
             <img
-              src={menuLight}
+              src={
+                location.pathname === "/saved-news"
+                  ? isMobileNavOpen
+                    ? menuLight
+                    : menuDark
+                  : menuLight
+              }
               alt="Menu button"
               className="navigation__menu-icon"
             />
@@ -101,6 +171,13 @@ function Navigation() {
                 Home
               </Link>
             </p>
+            {isLoggedIn ? (
+              <p className="navigation__btn">
+                <Link to="/saved-news" className="navigation__link">
+                  Saved Pages
+                </Link>
+              </p>
+            ) : null}
             <button
               onClick={() => {
                 isLoggedIn ? handleSignOutClick() : setActiveModal("login");
@@ -111,7 +188,7 @@ function Navigation() {
               }`}
             >
               <p className="navigation__btn-text">
-                {isLoggedIn ? currentUser.username || "Temp" : "Sign in"}
+                {isLoggedIn ? currentUser.username : "Sign in"}
               </p>
               {isLoggedIn ? (
                 <img

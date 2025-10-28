@@ -15,9 +15,10 @@ import "./App.css";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
+  const [searchFail, setSearchFail] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeModal, setActiveModal] = useState("");
-  const [newsCards, setNewsCards] = useState("");
+  const [newsCards, setNewsCards] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -29,7 +30,7 @@ function App() {
 
   const handleLoginModalSubmit = ({ email, password }) => {
     setActiveModal("");
-    setCurrentUser({ email, password, savedCards: [] });
+    setCurrentUser({ email, password, username: "Temp", savedCards: [] });
     setIsLoggedIn(true);
   };
 
@@ -125,6 +126,8 @@ function App() {
       value={{
         isLoading,
         setIsLoading,
+        searchFail,
+        setSearchFail,
         isMobileNavOpen,
         setIsMobileNavOpen,
         activeModal,
@@ -147,7 +150,10 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/saved-news" element={<SavedNews />} />
+              <Route
+                path="/saved-news"
+                element={isLoggedIn ? <SavedNews /> : <Navigate to="/" />}
+              />
             </Routes>
             <Footer />
             <div className="page__scrollbar" ref={scrollbarRef}>

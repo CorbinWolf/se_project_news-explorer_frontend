@@ -13,12 +13,13 @@ export const getNews = (search) => {
   return fetch(`${newsApiBaseUrl}?${params.toString()}`).then(checkResponse);
 };
 
-export const filterNewsData = (data) => {
+export const filterNewsData = (data, search) => {
   return data.map((item) => {
     const result = {};
 
     result.key = item.url;
     result.url = item.url;
+    result.keyword = search;
     result.image = item.urlToImage;
     result.date = getDate(item.publishedAt);
     result.title = item.title;

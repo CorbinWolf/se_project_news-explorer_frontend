@@ -10,15 +10,18 @@ import About from "../About/About";
 import "./Main.css";
 
 function Main() {
-  const { isLoading, newsCards } = useContext(GeneralUIContext);
+  const { isLoading, searchFail, setSearchFail, newsCards } =
+    useContext(GeneralUIContext);
 
   const [cardsToShow, setCardsToShow] = useState(3);
 
   return (
     <div className="main__background">
-      {newsCards === "" ? null : isLoading ? (
+      {isLoading ? (
         <Preloader />
-      ) : newsCards != null && !isLoading ? (
+      ) : searchFail ? (
+        <LoadFail />
+      ) : newsCards && newsCards.length > 0 ? (
         <div className="main">
           <div className="main__content">
             <h2 className="main__title">Search results</h2>
@@ -28,6 +31,7 @@ function Main() {
                   <NewsCard
                     key={item.key}
                     url={item.url}
+                    keyword={item.keyword}
                     image={item.image}
                     date={item.date}
                     title={item.title}
@@ -48,9 +52,9 @@ function Main() {
             )}
           </div>
         </div>
-      ) : (
+      ) : newsCards !== null ? (
         <LoadFail />
-      )}
+      ) : null}
       <About />
     </div>
   );

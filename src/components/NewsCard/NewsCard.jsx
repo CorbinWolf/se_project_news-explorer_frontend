@@ -7,7 +7,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import "./NewsCard.css";
 
-function NewsCard({ url, image, date, title, desc, publisher }) {
+function NewsCard({ url, keyword, image, date, title, desc, publisher }) {
   const [bookmarkState, setBookmarkState] = useState(bookmark);
 
   const { setActiveModal } = useContext(GeneralUIContext);
@@ -27,6 +27,7 @@ function NewsCard({ url, image, date, title, desc, publisher }) {
         )
       : currentUser.savedCards.unshift({
           url,
+          keyword,
           image,
           date,
           title,

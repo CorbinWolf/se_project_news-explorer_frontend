@@ -6,23 +6,26 @@ import GeneralUIContext from "../../contexts/GeneralUIContext";
 import "./SearchForm.css";
 
 function SearchForm() {
-  const { setIsLoading, setNewsCards } = useContext(GeneralUIContext);
+  const { setIsLoading, setSearchFail, setNewsCards } =
+    useContext(GeneralUIContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setNewsCards([]);
+    setSearchFail(false);
+    setNewsCards(null);
     getNews(e.target.search.value)
       .then((newsData) => {
-        return filterNewsData(newsData.articles);
+        return filterNewsData(newsData.articles, e.target.search.value);
       })
       .then((filteredData) => {
         setIsLoading(false);
         setNewsCards(filteredData);
       })
       .catch((err) => {
-        setNewsCards(null);
         setIsLoading(false);
+        setSearchFail(true);
+        setNewsCards(null);
         console.error(err);
       });
   };

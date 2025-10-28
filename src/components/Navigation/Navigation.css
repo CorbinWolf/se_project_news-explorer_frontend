@@ -8,6 +8,11 @@
   background-color: #00000066;
 }
 
+.navigation_saved-news {
+  border-bottom: 1px solid #999;
+  background-color: transparent;
+}
+
 .navigation_mobile {
   display: none;
   border-bottom: unset;
@@ -68,6 +73,10 @@
   border-bottom: 3px solid #fff;
 }
 
+.navigation__btn_active-saved-news {
+  border-bottom: 3px solid #1a1b22;
+}
+
 .navigation__btn_sign-in {
   margin: 18px 0;
   padding: 12px 60px;
@@ -75,6 +84,10 @@
   border-radius: 100px;
   cursor: pointer;
   background-color: transparent;
+}
+
+.navigation__btn_sign-in-saved-news {
+  border: 1px solid #1a1b22;
 }
 
 .navigation__btn_sign-out {
@@ -112,6 +125,10 @@
 .navigation__menu-icon {
   height: 24px;
   width: 24px;
+}
+
+.navigation__saved-news-text {
+  color: #1a1b22;
 }
 
 @media screen and (max-width: 700px) {
