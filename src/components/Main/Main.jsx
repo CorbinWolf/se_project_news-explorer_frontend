@@ -27,6 +27,7 @@ function Main() {
                 return (
                   <NewsCard
                     key={item.key}
+                    url={item.url}
                     image={item.image}
                     date={item.date}
                     title={item.title}

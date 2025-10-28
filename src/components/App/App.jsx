@@ -18,7 +18,7 @@ function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [newsCards, setNewsCards] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const pageContentRef = useRef(null);
@@ -29,13 +29,13 @@ function App() {
 
   const handleLoginModalSubmit = ({ email, password }) => {
     setActiveModal("");
-    setCurrentUser({ email, password });
+    setCurrentUser({ email, password, savedCards: [] });
     setIsLoggedIn(true);
   };
 
   const handleRegisterModalSubmit = ({ email, password, username }) => {
     setActiveModal("");
-    setCurrentUser({ email, password, username });
+    setCurrentUser({ email, password, username, savedCards: [] });
     setIsLoggedIn(true);
   };
 
