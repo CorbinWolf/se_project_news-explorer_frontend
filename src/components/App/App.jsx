@@ -14,9 +14,10 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import "./App.css";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeModal, setActiveModal] = useState("");
-  const [newsCards, setNewsCards] = useState([]);
+  const [newsCards, setNewsCards] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -122,6 +123,8 @@ function App() {
   return (
     <GeneralUIContext.Provider
       value={{
+        isLoading,
+        setIsLoading,
         isMobileNavOpen,
         setIsMobileNavOpen,
         activeModal,

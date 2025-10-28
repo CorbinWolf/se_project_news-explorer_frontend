@@ -17,6 +17,7 @@ export const filterNewsData = (data) => {
   return data.map((item) => {
     const result = {};
 
+    result.key = item.url;
     result.image = item.urlToImage;
     result.date = getDate(item.publishedAt);
     result.title = item.title;

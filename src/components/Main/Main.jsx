@@ -1,42 +1,55 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import GeneralUIContext from "../../contexts/GeneralUIContext";
 
-import NewsCard from "../NewsCard/NewsCard";
 import Preloader from "../Preloader/Preloader";
+import NewsCard from "../NewsCard/NewsCard";
+import LoadFail from "../LoadFail/LoadFail";
 import About from "../About/About";
 
 import "./Main.css";
 
 function Main() {
-  const { newsCards } = useContext(GeneralUIContext);
-  console.log(newsCards);
+  const { isLoading, newsCards } = useContext(GeneralUIContext);
+
+  const [cardsToShow, setCardsToShow] = useState(3);
 
   return (
     <div className="main__background">
-      <div className="main">
-        <div className="main__content">
-          <h2 className="main__title">Search results</h2>
-          <div className="main__card-container">
-            {newsCards.map((item) => {
-              return (
-                <NewsCard
-                  key={item.url}
-                  image={item.image}
-                  date={item.date}
-                  title={item.title}
-                  desc={item.desc}
-                  publisher={item.publisher}
-                />
-              );
-            })}
+      {newsCards === "" ? null : isLoading ? (
+        <Preloader />
+      ) : newsCards != null && !isLoading ? (
+        <div className="main">
+          <div className="main__content">
+            <h2 className="main__title">Search results</h2>
+            <div className="main__card-container">
+              {newsCards.slice(0, cardsToShow).map((item) => {
+                return (
+                  <NewsCard
+                    key={item.key}
+                    image={item.image}
+                    date={item.date}
+                    title={item.title}
+                    desc={item.desc}
+                    publisher={item.publisher}
+                  />
+                );
+              })}
+            </div>
+            {cardsToShow >= newsCards.length ? null : (
+              <button
+                type="button"
+                onClick={() => setCardsToShow(cardsToShow + 3)}
+                className="main__btn"
+              >
+                Show more
+              </button>
+            )}
           </div>
-          <button className="main__btn" type="button">
-            Show more
-          </button>
         </div>
-      </div>
-      <Preloader />
+      ) : (
+        <LoadFail />
+      )}
       <About />
     </div>
   );

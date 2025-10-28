@@ -45,6 +45,7 @@
   font-size: 18px;
   line-height: 24px;
   background-color: #fff;
+  transition: 0.15s ease-in-out;
 }
 
 .main__btn:hover {
