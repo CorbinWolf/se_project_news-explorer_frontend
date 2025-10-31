@@ -52,6 +52,10 @@
   display: block;
 }
 
+.card__link {
+  text-decoration: none;
+}
+
 .card__img {
   height: 276px;
   width: 100%;

@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import defaultCardImg from "../../assets/not-found.svg";
 import bookmark from "../../assets/bookmark.svg";
@@ -62,19 +63,26 @@ function NewsCard({ url, keyword, image, date, title, desc, publisher }) {
           <p className="card__flag">Sign in to save articles</p>
         )}
       </div>
-      <img
-        src={image ? image : defaultCardImg}
-        alt={title}
-        className="card__img"
-      />
-      <div className="card__content">
-        <time className="card__date" dateTime="">
-          {date}
-        </time>
-        <h3 className="card__title">{title}</h3>
-        <p className="card__desc">{desc}</p>
-        <cite className="card__publisher">{publisher}</cite>
-      </div>
+      <Link
+        to={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card__link"
+      >
+        <img
+          src={image ? image : defaultCardImg}
+          alt={title}
+          className="card__img"
+        />
+        <div className="card__content">
+          <time className="card__date" dateTime="">
+            {date}
+          </time>
+          <h3 className="card__title">{title}</h3>
+          <p className="card__desc">{desc}</p>
+          <cite className="card__publisher">{publisher}</cite>
+        </div>
+      </Link>
     </article>
   );
 }
