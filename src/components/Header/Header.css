@@ -1,0 +1,154 @@
+.header__background {
+  background-image: url("../../assets/header-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header__background_type_saved-news {
+  background-image: unset;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 80px 40px;
+  box-sizing: border-box;
+  background-color: #00000066;
+}
+
+.header_type_saved-news {
+  padding: 40px 40px 56px;
+  background-color: transparent;
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 608px;
+}
+
+.header__content_type_saved-news {
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1232px;
+}
+
+.header__title {
+  margin: 0;
+  color: #fff;
+  font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+}
+
+.header__title_type_saved-news {
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.header__text {
+  margin: 0 0 56px;
+  color: #fff;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.header__text_type_saved-news {
+  margin: 0;
+  color: #1a1b22;
+}
+
+.header__text_type_keywords {
+  font-weight: 700;
+}
+
+.header__saved-articles {
+  margin: 0;
+  color: #1a1b2280;
+}
+
+@media screen and (max-width: 1000px) {
+  .header {
+    padding: 40px;
+  }
+
+  .header_type_saved-news {
+    padding: 24px 40px 32px;
+  }
+
+  .header__content {
+    gap: 16px;
+    max-width: 452px;
+  }
+
+  .header__content_type_saved-news {
+    max-width: 1232px;
+  }
+
+  .header__title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .header__title_type_saved-news {
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .header__text {
+    margin: 0 0 32px;
+  }
+
+  .header__text_type_saved-news {
+    margin: 0;
+  }
+
+  .header__saved-articles {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    padding: 30px 16px;
+  }
+
+  .header__content {
+    max-width: 288px;
+  }
+
+  .header__title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .header__title_type_saved-news {
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .header__title_type_mobile-adjust {
+    margin-top: 57px;
+  }
+
+  .header__text {
+    margin: 0 0 106px;
+  }
+
+  .header__text_type_saved-news {
+    margin: 0 0 34px;
+  }
+
+  .header__saved-articles {
+    margin: 0;
+    font-size: 12px;
+  }
+}
