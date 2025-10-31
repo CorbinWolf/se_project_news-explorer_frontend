@@ -16,7 +16,7 @@ function SavedNews() {
   const [cardsToShow, setCardsToShow] = useState(3);
 
   return (
-    <div className="main__background">
+    <main className="main__background">
       {currentUser.savedCards.length === 0 ? (
         <LoadFail />
       ) : isLoading ? (
@@ -54,7 +54,7 @@ function SavedNews() {
       ) : (
         <LoadFail />
       )}
-    </div>
+    </main>
   );
 }
 

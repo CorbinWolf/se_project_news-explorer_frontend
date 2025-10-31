@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   height: 576px;
   width: 100%;
   max-width: 400px;
@@ -7,17 +8,13 @@
   overflow: hidden;
 }
 
-.card__img {
+.card__btn-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   display: flex;
   flex-direction: row-reverse;
   gap: 5px;
-  height: 276px;
-  padding: 24px;
-  box-sizing: border-box;
-  background-image: url("../../assets/not-found.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .card__btn {
@@ -53,6 +50,14 @@
 
 .card__btn:hover + .card__flag {
   display: block;
+}
+
+.card__img {
+  height: 276px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .card__content {
@@ -116,9 +121,13 @@
     max-width: 224px;
   }
 
+  .card__btn-container {
+    top: 8px;
+    right: 8px;
+  }
+
   .card__img {
     height: 150px;
-    padding: 8px;
   }
 
   .card__content {
@@ -145,9 +154,13 @@
     max-width: 288px;
   }
 
+  .card__btn-container {
+    top: 16px;
+    right: 16px;
+  }
+
   .card__img {
     height: 196px;
-    padding: 16px;
   }
 
   .card__content {

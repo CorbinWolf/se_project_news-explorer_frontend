@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 
+import defaultCardImg from "../../assets/not-found.svg";
 import bookmark from "../../assets/bookmark.svg";
 import bookmarkMarked from "../../assets/bookmark-marked.svg";
 import GeneralUIContext from "../../contexts/GeneralUIContext";
@@ -49,16 +50,7 @@ function NewsCard({ url, keyword, image, date, title, desc, publisher }) {
 
   return (
     <article className="card">
-      <div
-        style={
-          image
-            ? {
-                backgroundImage: `url(${image})`,
-              }
-            : {}
-        }
-        className="card__img"
-      >
+      <div className="card__btn-container">
         <button
           onClick={() => {
             isLoggedIn ? toggleBookmark() : setActiveModal("login");
@@ -70,6 +62,11 @@ function NewsCard({ url, keyword, image, date, title, desc, publisher }) {
           <p className="card__flag">Sign in to save articles</p>
         )}
       </div>
+      <img
+        src={image ? image : defaultCardImg}
+        alt={title}
+        className="card__img"
+      />
       <div className="card__content">
         <time className="card__date" dateTime="">
           {date}

@@ -25,7 +25,7 @@ function Header() {
         }`;
 
   return (
-    <div
+    <header
       className={`header__background${
         location.pathname === "/saved-news"
           ? " header__background_saved-news"
@@ -75,7 +75,7 @@ function Header() {
           </div>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 

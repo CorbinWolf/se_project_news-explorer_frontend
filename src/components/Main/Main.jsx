@@ -16,7 +16,7 @@ function Main() {
   const [cardsToShow, setCardsToShow] = useState(3);
 
   return (
-    <div className="main__background">
+    <main className="main__background">
       {isLoading ? (
         <Preloader />
       ) : searchFail ? (
@@ -56,7 +56,7 @@ function Main() {
         <LoadFail />
       ) : null}
       <About />
-    </div>
+    </main>
   );
 }
 
