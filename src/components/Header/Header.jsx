@@ -28,32 +28,32 @@ function Header() {
     <header
       className={`header__background${
         location.pathname === "/saved-news"
-          ? " header__background_saved-news"
+          ? " header__background_type_saved-news"
           : ""
       }`}
     >
       <Navigation />
       <div
         className={`header${
-          location.pathname === "/saved-news" ? " header_saved-news" : ""
+          location.pathname === "/saved-news" ? " header_type_saved-news" : ""
         }`}
       >
         {location.pathname === "/saved-news" ? (
-          <div className="header__content header__content_saved-news">
+          <div className="header__content header__content_type_saved-news">
             <p className="header__text header__saved-articles">
               Saved articles
             </p>
             <h2
-              className={`header__title header__title_saved-news header__saved-news-text${
-                isMobileNavOpen ? " header__title_mobile-adjust" : ""
+              className={`header__title header__title_type_saved-news header__text_type_saved-news${
+                isMobileNavOpen ? " header__title_type_mobile-adjust" : ""
               }`}
             >
               {currentUser?.username}, you have{" "}
               {currentUser?.savedCards?.length} saved articles
             </h2>
-            <p className="header__text header__saved-news-text">
+            <p className="header__text header__text_type_saved-news">
               By keywords:{" "}
-              <span className="header__text_keywords">
+              <span className="header__text_type_keywords">
                 {keywords.length > 0 ? keywordText : "None"}
               </span>
             </p>
@@ -62,7 +62,7 @@ function Header() {
           <div className="header__content">
             <h2
               className={`header__title${
-                isMobileNavOpen ? " header__title_mobile-adjust" : ""
+                isMobileNavOpen ? " header__title_type_mobile-adjust" : ""
               }`}
             >
               What's going on in the world?

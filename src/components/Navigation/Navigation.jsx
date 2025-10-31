@@ -37,20 +37,16 @@ function Navigation() {
   }, [isMobileNavOpen, setIsMobileNavOpen]);
 
   return (
-    <div
-      className={`${
-        isMobileNavOpen
-          ? "navigation__background"
-          : "navigation__background_unset"
-      }`}
-    >
+    <div className={`${isMobileNavOpen ? "navigation__background" : ""}`}>
       <div
         className={`navigation${
-          location.pathname === "/saved-news" ? " navigation_saved-news" : ""
+          location.pathname === "/saved-news"
+            ? " navigation_type_saved-news"
+            : ""
         }${
           activeModal !== ""
             ? ""
-            : `${isMobileNavOpen ? " navigation_dropdown-open" : ""}`
+            : `${isMobileNavOpen ? " navigation_type_dropdown-open" : ""}`
         }`}
       >
         <div className="navigation__content">
@@ -59,7 +55,7 @@ function Navigation() {
               location.pathname === "/saved-news"
                 ? isMobileNavOpen
                   ? ""
-                  : " navigation__saved-news-text"
+                  : " navigation__text_type_saved-news"
                 : ""
             }`}
           >
@@ -68,14 +64,14 @@ function Navigation() {
           <nav className="navigation__nav">
             <p
               className={`navigation__btn${
-                location.pathname === "/" ? " navigation__btn_active" : ""
+                location.pathname === "/" ? " navigation__btn_type_active" : ""
               }`}
             >
               <Link
                 to="/"
                 className={`navigation__link${
                   location.pathname === "/saved-news"
-                    ? " navigation__saved-news-text"
+                    ? " navigation__text_type_saved-news"
                     : ""
                 }`}
               >
@@ -86,7 +82,7 @@ function Navigation() {
               <p
                 className={`navigation__btn${
                   location.pathname === "/saved-news"
-                    ? " navigation__btn_active-saved-news"
+                    ? " navigation__btn_type_active-saved-news"
                     : ""
                 }`}
               >
@@ -94,7 +90,7 @@ function Navigation() {
                   to="/saved-news"
                   className={`navigation__link${
                     location.pathname === "/saved-news"
-                      ? " navigation__saved-news-text"
+                      ? " navigation__text_type_saved-news"
                       : ""
                   }`}
                 >
@@ -106,16 +102,16 @@ function Navigation() {
               onClick={() => {
                 isLoggedIn ? handleSignOutClick() : setActiveModal("login");
               }}
-              className={`navigation__btn_sign-in${
+              className={`navigation__btn_type_sign-in${
                 location.pathname === "/saved-news"
-                  ? " navigation__saved-news-text navigation__btn_sign-in-saved-news"
+                  ? " navigation__text_type_saved-news navigation__btn_type_sign-in-saved-news"
                   : ""
-              }${isLoggedIn ? " navigation__btn_sign-out" : ""}`}
+              }${isLoggedIn ? " navigation__btn_type_sign-out" : ""}`}
             >
               <p
                 className={`navigation__btn-text${
                   location.pathname === "/saved-news"
-                    ? " navigation__saved-news-text"
+                    ? " navigation__text_type_saved-news"
                     : ""
                 }`}
               >
@@ -154,18 +150,18 @@ function Navigation() {
         </div>
       </div>
       <div
-        className={`navigation navigation_mobile${
+        className={`navigation navigation_type_mobile${
           activeModal !== ""
             ? " navigation__hidden"
             : `${
                 isMobileNavOpen
-                  ? " navigation_dropdown-open"
+                  ? " navigation_type_dropdown-open"
                   : " navigation__hidden"
               }`
         }`}
       >
-        <div className="navigation__content navigation__content_mobile">
-          <nav className="navigation__nav_mobile">
+        <div className="navigation__content navigation__content_type_mobile">
+          <nav className="navigation__nav_type_mobile">
             <p className="navigation__btn">
               <Link to="/" className="navigation__link">
                 Home
@@ -183,8 +179,8 @@ function Navigation() {
                 isLoggedIn ? handleSignOutClick() : setActiveModal("login");
                 setIsMobileNavOpen(false);
               }}
-              className={`navigation__btn_sign-in${
-                isLoggedIn ? " navigation__btn_sign-out" : ""
+              className={`navigation__btn_type_sign-in${
+                isLoggedIn ? " navigation__btn_type_sign-out" : ""
               }`}
             >
               <p className="navigation__btn-text">

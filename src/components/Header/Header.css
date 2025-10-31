@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
 }
 
-.header__background_saved-news {
+.header__background_type_saved-news {
   background-image: unset;
 }
 
@@ -18,7 +18,7 @@
   background-color: #00000066;
 }
 
-.header_saved-news {
+.header_type_saved-news {
   padding: 40px 40px 56px;
   background-color: transparent;
 }
@@ -31,7 +31,7 @@
   max-width: 608px;
 }
 
-.header__content_saved-news {
+.header__content_type_saved-news {
   align-items: flex-start;
   gap: 30px;
   max-width: 1232px;
@@ -46,7 +46,7 @@
   line-height: 64px;
 }
 
-.header__title_saved-news {
+.header__title_type_saved-news {
   font-size: 40px;
   line-height: 46px;
 }
@@ -60,7 +60,12 @@
   line-height: 24px;
 }
 
-.header__text_keywords {
+.header__text_type_saved-news {
+  margin: 0;
+  color: #1a1b22;
+}
+
+.header__text_type_keywords {
   font-weight: 700;
 }
 
@@ -69,17 +74,12 @@
   color: #1a1b2280;
 }
 
-.header__saved-news-text {
-  margin: 0;
-  color: #1a1b22;
-}
-
 @media screen and (max-width: 1000px) {
   .header {
     padding: 40px;
   }
 
-  .header_saved-news {
+  .header_type_saved-news {
     padding: 24px 40px 32px;
   }
 
@@ -88,7 +88,7 @@
     max-width: 452px;
   }
 
-  .header__content_saved-news {
+  .header__content_type_saved-news {
     max-width: 1232px;
   }
 
@@ -97,7 +97,7 @@
     line-height: 40px;
   }
 
-  .header__title_saved-news {
+  .header__title_type_saved-news {
     font-size: 30px;
     line-height: 34px;
   }
@@ -106,13 +106,13 @@
     margin: 0 0 32px;
   }
 
+  .header__text_type_saved-news {
+    margin: 0;
+  }
+
   .header__saved-articles {
     margin: 0;
     font-size: 14px;
-  }
-
-  .header__saved-news-text {
-    margin: 0;
   }
 }
 
@@ -130,12 +130,12 @@
     line-height: 40px;
   }
 
-  .header__title_saved-news {
+  .header__title_type_saved-news {
     font-size: 30px;
     line-height: 34px;
   }
 
-  .header__title_mobile-adjust {
+  .header__title_type_mobile-adjust {
     margin-top: 57px;
   }
 
@@ -143,12 +143,12 @@
     margin: 0 0 106px;
   }
 
+  .header__text_type_saved-news {
+    margin: 0 0 34px;
+  }
+
   .header__saved-articles {
     margin: 0;
     font-size: 12px;
-  }
-
-  .header__saved-news-text {
-    margin: 0 0 34px;
   }
 }

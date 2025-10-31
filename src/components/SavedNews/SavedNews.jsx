@@ -16,15 +16,15 @@ function SavedNews() {
   const [cardsToShow, setCardsToShow] = useState(3);
 
   return (
-    <main className="main__background">
+    <main className="saved-news__background">
       {currentUser.savedCards.length === 0 ? (
         <LoadFail />
       ) : isLoading ? (
         <Preloader />
       ) : currentUser.savedCards != null && !isLoading ? (
-        <div className="main">
-          <div className="main__content">
-            <div className="main__card-container">
+        <div className="saved-news">
+          <div className="saved-news__content">
+            <div className="saved-news__card-container">
               {currentUser.savedCards.slice(0, cardsToShow).map((item) => {
                 return (
                   <NewsCard
@@ -44,7 +44,7 @@ function SavedNews() {
               <button
                 type="button"
                 onClick={() => setCardsToShow(cardsToShow + 3)}
-                className="main__btn"
+                className="saved-news__btn"
               >
                 Show more
               </button>
