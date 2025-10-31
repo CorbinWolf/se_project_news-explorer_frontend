@@ -10,8 +10,7 @@ import About from "../About/About";
 import "./Main.css";
 
 function Main() {
-  const { isLoading, searchFail, setSearchFail, newsCards } =
-    useContext(GeneralUIContext);
+  const { isLoading, searchFail, newsCards } = useContext(GeneralUIContext);
 
   const [cardsToShow, setCardsToShow] = useState(3);
 

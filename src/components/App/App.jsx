@@ -74,6 +74,7 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
+    const currentScrollbar = scrollbarRef.current;
     let isUpdating = false;
     let listenersAdded = false;
 
@@ -85,14 +86,14 @@ function App() {
     const adjustScrollPosition = () => {
       if (isUpdating) return;
       isUpdating = true;
-      scrollbarRef.current.scrollTop = document.documentElement.scrollTop;
+      currentScrollbar.scrollTop = document.documentElement.scrollTop;
       isUpdating = false;
     };
 
     const adjustPagePosition = () => {
       if (isUpdating) return;
       isUpdating = true;
-      document.documentElement.scrollTop = scrollbarRef.current.scrollTop;
+      document.documentElement.scrollTop = currentScrollbar.scrollTop;
       isUpdating = false;
     };
 
@@ -102,12 +103,12 @@ function App() {
 
     if (
       pageContentRef.current != null &&
-      scrollbarRef.current != null &&
+      currentScrollbar != null &&
       scrollbarHeightRef.current != null
     ) {
       resizeScrollbarObserver.observe(pageContentRef.current);
       document.addEventListener("scroll", adjustScrollPosition);
-      scrollbarRef.current.addEventListener("scroll", adjustPagePosition);
+      currentScrollbar.addEventListener("scroll", adjustPagePosition);
       listenersAdded = true;
       adjustScrollPosition();
     }
@@ -116,7 +117,7 @@ function App() {
       if (!listenersAdded) return;
       resizeScrollbarObserver.disconnect();
       document.removeEventListener("scroll", adjustScrollPosition);
-      scrollbarRef.current.removeEventListener("scroll", adjustPagePosition);
+      currentScrollbar.removeEventListener("scroll", adjustPagePosition);
       listenersAdded = false;
     };
   }, []);

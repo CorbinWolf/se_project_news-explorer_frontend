@@ -65,7 +65,7 @@ function Header() {
                 isMobileNavOpen ? " header__title_type_mobile-adjust" : ""
               }`}
             >
-              What's going on in the world?
+              What&#39;s going on in the world?
             </h2>
             <p className="header__text">
               Find the latest news on any topic and save them in your personal

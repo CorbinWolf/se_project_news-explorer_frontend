@@ -10,16 +10,16 @@ function About() {
         <div className="about__desc">
           <h2 className="about__header">About the author</h2>
           <p className="about__article">
-            Hi! My name's Corbin Wolf and I'm a Full-Stack Software Engineer. I
-            can utilize HTML, CSS, JavaScript, React, and Vite for front-end
-            development. I can create back-ends with Node.js, manage databases
-            with MongoDB, and route users with Nginx.
+            Hi! My name&#39;s Corbin Wolf and I&#39;m a Full-Stack Software
+            Engineer. I can utilize HTML, CSS, JavaScript, React, and Vite for
+            front-end development. I can create back-ends with Node.js, manage
+            databases with MongoDB, and route users with Nginx.
           </p>
           <p className="about__article">
-            I had a decent grasp on HTML, CSS, and JavaScript, but TripleTen's
-            Software Engineering course took my skills to the next level. With
-            the tools that I've gained, I can build a web application to any
-            design seen fit.
+            I had a decent grasp on HTML, CSS, and JavaScript, but
+            TripleTen&#39;s Software Engineering course took my skills to the
+            next level. With the tools that I&#39;ve gained, I can build a web
+            application to any design seen fit.
           </p>
         </div>
       </div>
